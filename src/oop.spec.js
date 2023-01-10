@@ -56,22 +56,30 @@ describe('ООП', () => {
     });
 
     describe('#Queue', () => {
-        it('проверка массивом', () => {
+        it('создается без параметров', () =>{
             const queue = new core.Queue();
-            // TODO:
-            assert.strictEqual(true, true);
+            assert.deepEqual(queue.array, []);
+        });
+
+        it('проверка массивом', () => {
+            const queue = new core.Queue([1,4,2]);
+            queue.enqueue(5);
+            assert.deepEqual(queue.array, [1,4,2,5]);
+            assert.deepEqual(queue.dequeue(), 1);
+
         });
 
         it('проверка на пограничные случаи', () => {
             const queue = new core.Queue();
-            // TODO:
-            assert.strictEqual(true, true);
+            queue.enqueue(1);
+            assert.strictEqual(queue.dequeue(), 1);
+            assert.strictEqual(queue.dequeue(), 'There is no elements to get');
+            assert.strictEqual(queue.dequeue(), 'There is no elements to get');
         });
 
         it('может создаться из массива', () => {
-            const queue = new core.Queue([1,2,3,5]);
-            // TODO:
-            assert.strictEqual(true, true);
+            const queue = new core.Queue([1,2,3,4,5,6,7,8,9,10]);
+            assert.deepEqual(queue.array, [1,2,3,4,5,6,7,8,9,10]);
         });
     });
 });
