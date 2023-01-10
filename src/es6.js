@@ -6,7 +6,7 @@
 // Напишите функцию, которая принимает ФИО пользователя и возвращает
 // строку формата Имя Фамилия
 function fioToName(fio) {
-    const [surname, name] = fio.split(" ");
+    const [name, surname] = fio.split(" ");
     return surname + ' ' + name;
 }
 
@@ -24,9 +24,7 @@ function filterUnique(array) {
 // присмотритесь к методу .reduce
 function calculateSalaryDifference(array) {
     if (array.length === 0) return 0;
-    return array.reduce( (previousValue, currentValue) =>{
-        Math.max(previousValue.max, currentValue)/Math.min(previousValue.min, currentValue);
-    })
+    return array.reduce((x, y) => Math.max(x, y)) / array.reduce((x, y) => Math.min(x, y));
 }
 
 // Реализуйте класс "словарь слов" (как толковый словарь)

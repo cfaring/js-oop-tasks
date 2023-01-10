@@ -56,33 +56,30 @@ describe('ООП', () => {
     });
 
     describe('#Queue', () => {
-        it('проверка массивом', () => {
+        it('создается без параметров', () =>{
             const queue = new core.Queue();
-            assert.strictEqual(queue.head, null);
-            assert.strictEqual(queue.tail, null);
+            assert.deepEqual(queue.array, []);
+        });
+
+        it('проверка массивом', () => {
+            const queue = new core.Queue([1,4,2]);
+            queue.enqueue(5);
+            assert.deepEqual(queue.array, [1,4,2,5]);
+            assert.deepEqual(queue.dequeue(), 1);
+
         });
 
         it('проверка на пограничные случаи', () => {
             const queue = new core.Queue();
-            queue.push(1);
-            assert.strictEqual(queue.pop(), 1);
-            assert.strictEqual(queue.pop(), undefined);
-            queue.push(-5);
-            queue.push(3);
-            queue.push(10);
-            assert.strictEqual(queue.pop(), -5);
-            assert.strictEqual(queue.pop(), 3);
-            assert.strictEqual(queue.pop(), 10);
-            assert.strictEqual(queue.pop(), undefined);
+            queue.enqueue(1);
+            assert.strictEqual(queue.dequeue(), 1);
+            assert.strictEqual(queue.dequeue(), 'There is no elements to get');
+            assert.strictEqual(queue.dequeue(), 'There is no elements to get');
         });
 
         it('может создаться из массива', () => {
-            const queue = new core.Queue([1,2,3,5]);
-            assert.strictEqual(queue.pop(), 1);
-            assert.strictEqual(queue.pop(), 2);
-            assert.strictEqual(queue.pop(), 3);
-            assert.strictEqual(queue.pop(), 5);
-            assert.strictEqual(queue.pop(), undefined);
+            const queue = new core.Queue([1,2,3,4,5,6,7,8,9,10]);
+            assert.deepEqual(queue.array, [1,2,3,4,5,6,7,8,9,10]);
         });
     });
 });
